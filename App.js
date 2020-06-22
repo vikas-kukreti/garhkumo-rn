@@ -3,7 +3,6 @@ import NavigaterMenu from "./components/menu/NavigaterMenu";
 import { FontAwesome } from "@expo/vector-icons";
 import {
   View,
-  ImageBackground,
   Slider,
   Animated,
   PanResponder,
@@ -29,6 +28,7 @@ export class App extends Component {
     this.isSeeking = false;
     this.shouldPlayAtEndOfSeek = false;
     this.playbackInstance = null;
+    this.transitionActive = false;
     this.state = {
       playbackInstancePosition: null,
       playbackInstanceDuration: null,
@@ -43,17 +43,14 @@ export class App extends Component {
     this.playerOpen = true;
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
-      onPanResponderMove: (evt, gestureState) => {
-        if (this.playerOpen) {
-          this.position.setValue({ x: 0, y: Math.abs(gestureState.dy) });
-        } else {
-          this.position.setValue({
-            x: 0,
-            y: Dimensions.get("window").height - gestureState.dy
-          });
-        }
+      onPanResponderStart: (e, g) => {
+        this.transitionActive = true;
       },
+      onPanResponderMove: (evt, gestureState) => {},
       onPanResponderRelease: (evt, gestureState) => {
+        setTimeout(() => {
+          this.transitionActive = false;
+        }, 1500);
         if (gestureState.dy < -150) {
           Animated.timing(this.position, {
             toValue: { x: 0, y: Dimensions.get("window").height }
@@ -159,6 +156,9 @@ export class App extends Component {
   }
 
   _onPlaybackStatusUpdate = status => {
+    if(this.transitionActive) {
+      return;
+    }
     if (status.isLoaded) {
       this.setState({
         playbackInstancePosition: status.positionMillis,
@@ -302,16 +302,28 @@ export class App extends Component {
     };
   }
   openPlayer(position) {
+    this.transitionActive = true;
+    this.playerOpen = true;
+    setTimeout(() => {
+      this.transitionActive = false;
+    }, 2000);
+    this.position.setValue({
+      x: 0,
+      y: 0
+    });
     Animated.timing(position, {
       toValue: { x: 0, y: Dimensions.get("window").height }
     }).start();
-    this.state.playerOpen = false;
   }
   closePlayer(position) {
+    this.transitionActive = true;
+    setTimeout(() => {
+      this.transitionActive = false;
+    }, 2000);
+    this.playerOpen = false;
     Animated.timing(position, {
       toValue: { x: 0, y: 0 }
     }).start();
-    this.state.playerOpen = true;
   }
   inPlaylist(target) {
     for (var i = 0; i < this.playlist.length; i++) {
@@ -391,8 +403,6 @@ export class App extends Component {
         {(this.playlist != null && this.playlist.length != 0 && this.state.playerHidden == false) ? (
           <Animated.View
             {...this._panResponder.panHandlers}
-            renderToHardwareTextureAndroid={true}
-            shouldRasterizeIOS={true}
             hardwareAccelerated={true}
             style={{ ...styles.musicBar, ...this.musicBarPosition() }}
           >
@@ -400,15 +410,8 @@ export class App extends Component {
               hardwareAccelerated={true}
               style={{ ...styles.playerContainer, ...this.musicBoxHeight() }}
             >
-              <ImageBackground
-                blurRadius={10}
-                source={{
-                  uri:
-                    this.playlist != null && this.playlist.length != 0
-                      ? this.playlist[this.index].songImg
-                      : "../../assets/listing-music.jpg"
-                }}
-                style={{ flex: 1, flexDirection: "row" }}
+              <View
+                style={{ flex: 1, flexDirection: "row", backgroundColor: '#333333' }}
               >
                 <TouchableOpacity
                   style={styles.imgContainer}
@@ -451,17 +454,10 @@ export class App extends Component {
                       )}
                   </TouchableOpacity>
                 </View>
-              </ImageBackground>
+              </View>
             </Animated.View>
             <View style={{ flex: 1, backgroundColor: "#222" }}>
-              <ImageBackground
-                blurRadius={10}
-                source={{
-                  uri:
-                    this.playlist != null && this.playlist.length != 0
-                      ? this.playlist[this.index].songImg
-                      : "../../assets/listing-music.jpg"
-                }}
+              <View
                 style={styles.musicPlayer}
               >
                 <View style={styles.containerInner}>
@@ -480,7 +476,6 @@ export class App extends Component {
                     </TouchableOpacity>
                     <Modal
                       animationType="slide"
-                      transparent={true}
                       hardwareAccelerated={true}
                       visible={this.state.playlistOpen}
                       animationType={"slide"}
@@ -614,7 +609,7 @@ export class App extends Component {
                     </TouchableOpacity>
                   </View>
                 </View>
-              </ImageBackground>
+              </View>
             </View>
           </Animated.View>)
           : (<View></View>)}
