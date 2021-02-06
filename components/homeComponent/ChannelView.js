@@ -31,7 +31,7 @@ const ChannelView = props => {
     navigate("allChannel");
   };
   return (
-    <View>
+    <View renderToHardwareTextureAndroid={true}>
       <Preloader data={loading} />
 
       <View style={styles.OptionList}>

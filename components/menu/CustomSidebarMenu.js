@@ -61,6 +61,11 @@ export default class CustomSidebarMenu extends Component {
     ]
 
   }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+  
   render() {
 
     const _historyClear = (name) => {
@@ -68,7 +73,7 @@ export default class CustomSidebarMenu extends Component {
       ToastAndroid.show('Cleare recently view ' + name, ToastAndroid.SHORT);
     }
     return (
-      <ScrollView style={styles.sideMenuContainer} showsVerticalScrollIndicator={false}>
+      <ScrollView style={styles.sideMenuContainer} renderToHardwareTextureAndroid={true} showsVerticalScrollIndicator={false}>
         <Image
           source={{ uri: this.proileImage }}
           style={styles.sideMenuProfileIcon}

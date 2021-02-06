@@ -86,7 +86,7 @@ const ChannelViewComponent = props => {
   }
 
   if (state.loading) {
-    return <Preloader data ={state.loading}/>
+    return <Preloader renderToHardwareTextureAndroid={true} data ={state.loading}/>
   } else {
 
     const AsyncStorageData = (channelDeatils) => {

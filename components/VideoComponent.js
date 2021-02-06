@@ -7,7 +7,6 @@ const VideoComponent = (props) => {
     const songId = props.navigation.state.params.dataSongId;
     const [play, setplay] = useState(false);
     
-
     React.useEffect(() => {
         changeScreenLandscape();
     }, [])
@@ -32,7 +31,7 @@ const VideoComponent = (props) => {
     })
    
     return (
-        <ImageBackground resizeMode={"center"} source={require('../assets/Preloader.gif')} style={styles.preloader}>
+        <ImageBackground resizeMode={"center"} source={require('../assets/Preloader.gif')} style={styles.preloader} renderToHardwareTextureAndroid={true}>
              <WebView
                 style={styles.webView}
                 originWhitelist={['*']}

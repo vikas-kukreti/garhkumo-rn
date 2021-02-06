@@ -15,6 +15,10 @@ class SongListLayout extends Component {
         }
     }
 
+    shouldComponentUpdate() {
+        return false;
+    }
+
 
     render() {
 
@@ -69,7 +73,7 @@ class SongListLayout extends Component {
             })
         }
         return (
-            <View style={styles.songViewContainer}>
+            <View style={styles.songViewContainer} renderToHardwareTextureAndroid={true}>
                 <TouchableOpacity
                     onPress={() => {
                         playBtnHandler(item.item);

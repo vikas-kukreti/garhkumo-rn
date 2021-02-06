@@ -6,7 +6,9 @@ import ShareHandlerComponent from '../handler/ShareHandlerComponent';
 import {withNavigation} from 'react-navigation';
 import { useNavigation } from '@react-navigation/native';
 class MoreOptionPlayer extends Component {
-    
+    shouldComponentUpdate() {
+        return false;
+    }
     render() {
         const navigation = useNavigation();
 

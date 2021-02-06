@@ -16,7 +16,7 @@ const ChannelCard = props => {
     });
   };
   return (
-    <TouchableOpacity
+    <TouchableOpacity renderToHardwareTextureAndroid={true}
       onPress={() => channelClickHandler(channel.item.c_name_id,channel.item.c_name)}
       style={styles.cradContainer}
       onLongPress={() =>
@@ -26,6 +26,7 @@ const ChannelCard = props => {
       <View style={styles.card}>
         <View style={{ borderRadius: 300, backgroundColor: "#eaeaef" }}>
           <Image
+          fadeDuration={0}
             resizeMode="contain"
             source={{ uri: channel.item.c_img }}
             style={styles.cardImage}

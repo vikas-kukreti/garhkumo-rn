@@ -10,13 +10,18 @@ export default class PlaylistComponent extends Component {
       playlist: props.playlist
     }
   }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
   goBackHandler() {
     this.props.close();
   }
   render() {
     if (this.state.playlist == null || this.state.playlist.length == 0)
       return (
-        <View style={styles.container}>
+        <View style={styles.container} renderToHardwareTextureAndroid={true}>
           <View class={styles.header}>
             <TouchableOpacity
               style={{ alignSelf: 'center' }}

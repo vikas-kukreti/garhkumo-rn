@@ -32,7 +32,7 @@ const ChannelComponent = props => {
       })
       .catch(() => {
       });
-  }, []);
+  }, [channelData]);
 
   const _loadMoreData = () => {
     fromLimit += 40;
@@ -45,7 +45,7 @@ const ChannelComponent = props => {
       });
   }
     return (
-      <View>
+      <View renderToHardwareTextureAndroid={true}>
         <Preloader data={channelData.loading} />
         <FlatList
           onEndReached={() => _loadMoreData()} 

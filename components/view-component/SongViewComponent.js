@@ -70,7 +70,7 @@ const SongViewComponent = (props) => {
         channelSonngList();
     }
     return (
-        <View style={styles.container}>
+        <View style={styles.container} renderToHardwareTextureAndroid={true}>
             <Preloader data={state.loading} />
             {
 

@@ -47,7 +47,7 @@ const SliderViewPager = (props) => {
     return <Preloader data={loading}/>
   } else {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }} renderToHardwareTextureAndroid={true}>
         <ViewPager style={styles.viewPager} initialPage={0} transitionStyle='curl' pageMargin={-10}>
           {slideSong.map(song => {
             return (
@@ -62,16 +62,16 @@ const SliderViewPager = (props) => {
                     resizeMode="cover"
                     source={{ uri: song.songImg }}
                     style={styles.sliderBackground}
+                    fadeDuration={0}
                   />
-                  <ImageBackground
-                    blurRadius={8}
-                    source={{ uri: song.songImg }}
+                  <View
                     style={styles.sliderPoint}
+                    fadeDuration={0}
                   >
                     <Text numberOfLines={1} style={styles.songNameText}>
                       {song.songName}
                     </Text>
-                  </ImageBackground>
+                  </View>
 
                 </View>
               </TouchableHighlight>
@@ -100,7 +100,8 @@ const styles = StyleSheet.create({
   sliderPoint: {
     width: null,
     height: 20,
-    bottom: 20
+    bottom: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   songNameText: {
     textAlign: "center",

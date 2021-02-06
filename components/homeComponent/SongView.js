@@ -47,7 +47,7 @@ const SongView = props => {
   };
 
   return (
-    <View>
+    <View renderToHardwareTextureAndroid={true}>
       <Preloader data={loading} />
       <View style={styles.OptionList}>
         <Text style={styles.OptionListView}>{titleName}</Text>

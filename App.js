@@ -20,6 +20,9 @@ import PlaylistComponent from "./components/PlaylistComponent";
 import ApiHandelComponent from "./components/handler/ApiHandelComponent";
 import { MenuProvider } from "react-native-popup-menu";
 
+import { enableScreens } from 'react-native-screens';
+enableScreens();
+
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -391,7 +394,7 @@ export class App extends Component {
   render() {
     
     return (
-      <MenuProvider style={{ flex: 1 }}>
+      <MenuProvider renderToHardwareTextureAndroid={true} hardwareAccelerated={true} style={{ flex: 1 }}>
         <View style={{ flex: 1, marginBottom: (this.playlist.length != 0 && this.state.playerHidden == false) ? 61 : 0 }}>
           <NavigaterMenu
             screenProps={(x, y, z) => {
@@ -402,11 +405,16 @@ export class App extends Component {
         </View>
         {(this.playlist != null && this.playlist.length != 0 && this.state.playerHidden == false) ? (
           <Animated.View
+          
+          useNativeDriver={true}
             {...this._panResponder.panHandlers}
             hardwareAccelerated={true}
+            renderToHardwareTextureAndroid={true}
             style={{ ...styles.musicBar, ...this.musicBarPosition() }}
           >
             <Animated.View
+            useNativeDriver={true}
+              renderToHardwareTextureAndroid={true}
               hardwareAccelerated={true}
               style={{ ...styles.playerContainer, ...this.musicBoxHeight() }}
             >

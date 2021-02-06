@@ -4,8 +4,10 @@ import { View, Image, StyleSheet, Dimensions, Text } from 'react-native'
 const Preloader = (props) => {
     const show = props.data;
     return (
-        <View style={(show) ? styles.visible : styles.unVisibsle}>
+        <View renderToHardwareTextureAndroid={true} style={(show) ? styles.visible : styles.unVisibsle}>
             <Image source={require('../../assets/Preloader.gif')}
+            
+            fadeDuration={90}
                 style={styles.preloadImg} />
         </View>
     )

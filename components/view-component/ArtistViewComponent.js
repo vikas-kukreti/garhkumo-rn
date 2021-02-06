@@ -66,6 +66,7 @@ const ArtistViewComponent = (props) => {
       });
 
   }, []);
+
   const playAllSongHandler = () => {
     const arSongList = arSong.songs;
     try {

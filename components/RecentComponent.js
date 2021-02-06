@@ -9,7 +9,7 @@ const AppIndex = createAppContainer(RecentComponentNavigater)
 	rconst
 	render(){  
 		return(  
-			<View style={styles.container} >				
+			<View renderToHardwareTextureAndroid={true} style={styles.container} >				
 				<AppIndex/>  
 			</View>  
 		)  

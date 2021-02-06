@@ -5,7 +5,9 @@ import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-m
 import ShareHandlerComponent from '../handler/ShareHandlerComponent';
 import {withNavigation} from 'react-navigation';
 class MoreOptionPopupMenu extends Component {
-    
+    shouldComponentUpdate() {
+        return false;
+      }
     render() {
         const viewInfoHandler = (songId,songName) => {
 

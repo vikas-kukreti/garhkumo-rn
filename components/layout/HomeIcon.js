@@ -8,7 +8,7 @@ const allClickHandler = props => {
 };
 const HomeIcon = props => {
   return (
-    <View style={styles.iconContainer}>
+    <View style={styles.iconContainer} renderToHardwareTextureAndroid={true}>
       <TouchableOpacity
         onPress={() => allClickHandler(props)}
         style={styles.iconOption}

@@ -131,7 +131,7 @@ const SearchComponent = (props) => {
 
         if (type == 0) {
             return (
-                <View style={styles.listContainer}>
+                <View style={styles.listContainer} renderToHardwareTextureAndroid={true}>
                     <Text style={styles.resultTitle}>Search Artist Result</Text>
                     <FlatList
                         style={styles.songListContainer}
@@ -154,7 +154,7 @@ const SearchComponent = (props) => {
 
         } else if (type == 1) {
             return (
-                <View style={styles.listContainer}>
+                <View style={styles.listContainer} renderToHardwareTextureAndroid={true}>
                     <Text style={styles.resultTitle}>Search Channel Result</Text>
                     <FlatList
                         style={styles.songListContainer}
@@ -178,7 +178,7 @@ const SearchComponent = (props) => {
         }
         else {
             return (
-                <View style={styles.listContainer}>
+                <View style={styles.listContainer} renderToHardwareTextureAndroid={true}>
                     <Text style={styles.resultTitle}>Search Song Result</Text>
                     <FlatList
                         style={styles.songListContainer}
@@ -204,7 +204,7 @@ const SearchComponent = (props) => {
 
 
     return (
-        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false} renderToHardwareTextureAndroid={true}>
             <View style={styles.searchContainer}>
                 <Text style={styles.searchText}>Search</Text>
             </View>

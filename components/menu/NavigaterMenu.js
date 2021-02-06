@@ -17,6 +17,9 @@ import { createAppContainer } from "react-navigation";
 import CustomSidebarMenu from './CustomSidebarMenu';
 import { Dimensions } from "react-native";
 
+import { enableScreens } from 'react-native-screens';
+enableScreens();
+
 global.currentScreenIndex = 0;
 
 const NavigaterMenu = createStackNavigator(
@@ -98,5 +101,6 @@ const AppDrawerNavigator = createDrawerNavigator(
     drawerWidth: Dimensions.get('window').width - 130,
   }
 );
+
 export default createAppContainer(AppDrawerNavigator);
 

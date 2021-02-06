@@ -56,7 +56,7 @@ const SongCard = props => {
   };
 
   return (
-    <View>
+    <View renderToHardwareTextureAndroid={true}>
       <View style={styles.moreOption}>
         <MoreOptionPopupMenu dataSongId={song.item}
           songName={song.item.songName} screenProps={props.screenProps} navigation={props.navigation} />

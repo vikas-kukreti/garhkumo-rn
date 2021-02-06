@@ -47,7 +47,7 @@ const SongComponent = props => {
     return <Preloader data={SongState.loading} />
   } else {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} renderToHardwareTextureAndroid={true}>
         <FlatList
           onEndReached={() => loadMoreData()}
           renderToHardwareTextureAndroid={true}

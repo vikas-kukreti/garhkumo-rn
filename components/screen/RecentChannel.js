@@ -9,7 +9,10 @@ export default class RecentChannel extends Component{
 		this.state = {
 			channel: ''
 		}
-	}
+    }
+    shouldComponentUpdate() {
+        return false;
+      }
     render(){  
         AsyncStorage.getItem('channel')
         .then((res) => JSON.parse(res))

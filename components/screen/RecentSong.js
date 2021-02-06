@@ -10,6 +10,10 @@ export default class RecentSong extends Component {
             Song: ''
         }
     }
+
+    shouldComponentUpdate() {
+        return false;
+      }
     render() {
         
         AsyncStorage.getItem('song')

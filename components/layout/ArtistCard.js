@@ -16,8 +16,9 @@ const ArtistCard = props => {
       message: shareUrl
     });
   };
+  
   return (
-    <TouchableOpacity
+    <TouchableOpacity  renderToHardwareTextureAndroid={true}
       key={artist.ar_id}
       onPress={() => artistClickHandler(artist.ar_id,artist.ar_name)}
       onLongPress={() => shareBtnHandler(artist.ar_id, artist.ar_name)}
@@ -29,6 +30,7 @@ const ArtistCard = props => {
           key="aImg"
         >
           <Image
+            fadeDuration={0}
             resizeMode="contain"
             source={{
               uri: ApiHandelComponent.artistImage.url + artist.ar_img

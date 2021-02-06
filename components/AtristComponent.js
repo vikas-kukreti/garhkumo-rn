@@ -46,7 +46,7 @@ const AtristComponent = props => {
   }
 
   return (
-    <View>
+    <View renderToHardwareTextureAndroid={true}>
       <Preloader data={artistList.loading} />
       <FlatList
         onEndReached={() => _handelLoadMoreData()}

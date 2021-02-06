@@ -38,7 +38,7 @@ const ArtistView = props => {
 
 
   return (
-    <View>
+    <View renderToHardwareTextureAndroid={true}>
       <Preloader data={loading} />
 
       <View style={styles.OptionList}>

@@ -13,7 +13,7 @@ export default class HomeComponent extends Component {
   render() {
 
     return (
-      <ScrollView>
+      <ScrollView renderToHardwareTextureAndroid={true}>
         <View style={styles.container}>
           <SliderViewPager screenProps={this.props.screenProps}/>
           <View style={styles.optionView}>

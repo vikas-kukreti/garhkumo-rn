@@ -14,7 +14,7 @@ const NotificationPlayerComponent = () => {
         ToastAndroid.show('For Word Btn', ToastAndroid.SHORT);
     }
     return (
-        <View style={styles.container}>
+        <View  renderToHardwareTextureAndroid={true} style={styles.container}>
             <View style={styles.innerContainer}>
                 <View style={styles.textContainer}>
                     <Text numberOfLines={1} style={styles.songText}> song Name</Text>

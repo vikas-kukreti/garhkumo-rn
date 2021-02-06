@@ -10,6 +10,9 @@ export default class RecentArtist extends Component {
             artists: ''
         }
     }
+    shouldComponentUpdate() {
+        return false;
+    }
     render() {
         AsyncStorage.getItem('artist')
             .then((res) => JSON.parse(res))
